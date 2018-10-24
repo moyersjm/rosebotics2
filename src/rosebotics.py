@@ -186,11 +186,15 @@ class TouchSensor(rb.TouchSensor):
 
     def wait_until_pressed(self):
         """ Waits (doing nothing new) until the touch sensor is pressed. """
-        # TODO.
+        while self.get_value() != 1:
+            time.sleep(.1)
+        return
 
     def wait_until_released(self):
         """ Waits (doing nothing new) until the touch sensor is released. """
-        # TODO
+        while self.get_value() != 0:
+            time.sleep(.1)
+        return
 
 
 class Camera(object):
