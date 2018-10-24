@@ -3,7 +3,7 @@
   for a variety of applications of the robot.  Augment as appropriate.
 
   Team # PUT_YOUR_TEAM_NUMBER_HERE.
-  Team members:  Jonathan Moyers.
+  Team members:  Jonathan Moyers, Grant Duchars, .
   Fall term, 2018-2019.
 """
 
