@@ -159,7 +159,7 @@ class ArmAndClaw(object):
         Set the motor's position to 0 at that point.
         (Hence, 0 means all the way DOWN and XXX means all the way UP).
         """
-        # TODO
+
 
     def raise_arm_and_close_claw(self):
         """
@@ -181,7 +181,7 @@ class ArmAndClaw(object):
 
 
 class TouchSensor(rb.TouchSensor):
-    """ Primary author of this class:  PUT_YOUR_NAME_HERE. """
+    """ Primary author of this class:  Jonathan Moyers. """
 
     def __init__(self, port=ev3.INPUT_1):
         super().__init__(port)
@@ -204,7 +204,7 @@ class Camera(object):
 
 
 class ColorSensor(rb.ColorSensor):
-    """ Primary author of this class:  PUT_YOUR_NAME_HERE. """
+    """ Primary author of this class:  Jonathan Moyers. """
 
     def __init__(self, port=ev3.INPUT_3):
         super().__init__(port)
@@ -215,7 +215,10 @@ class ColorSensor(rb.ColorSensor):
         light intensity is less than the given value (threshold), which should
         be between 0 (no light reflected) and 100 (maximum light reflected).
         """
-        # TODO.
+        while self.get_reflected_intensity() > reflected_light_intensity:
+            time.sleep(.1)
+        return
+
 
     def wait_until_intensity_is_greater_than(self, reflected_light_intensity):
         """
@@ -223,7 +226,9 @@ class ColorSensor(rb.ColorSensor):
         light intensity is greater than the given value (threshold), which
         should be between 0 (no light reflected) and 100 (max light reflected).
         """
-        # TODO.
+        while self.get_reflected_intensity() < reflected_light_intensity:
+            time.sleep(.1)
+        return
 
     def wait_until_color_is(self, color):
         """
@@ -231,7 +236,9 @@ class ColorSensor(rb.ColorSensor):
         of what color it sees is the given color.
         The given color must be a Color (as defined above).
         """
-        # TODO.
+        while self.get_color() != color:
+            time.sleep(.1)
+        return
 
     def wait_until_color_is_one_of(self, colors):
         """
@@ -239,7 +246,11 @@ class ColorSensor(rb.ColorSensor):
         of what color it sees is any one of the given sequence of colors.
         Each item in the sequence must be a Color (as defined above).
         """
-        # TODO.
+        while True:
+            for k in range(len(colors)):
+                if colors[k] == self.get_color():
+                    return
+            time.sleep(.1)
 
 
 class InfraredSensorAsProximitySensor(object):
