@@ -110,7 +110,7 @@ class DriveSystem(object):
         self.start_moving(duty_cycle_percent,duty_cycle_percent)
         while True:
             degrees_turned = self.left_wheel.get_degrees_spun()
-            if degrees_turned > (inches * 120):
+            if degrees_turned > (inches * 100):
                 break
         self.stop_moving(stop_action)
         
@@ -128,7 +128,7 @@ class DriveSystem(object):
         # TODO: Do a few experiments to determine the constant that converts
         # TODO:   from wheel-degrees-spun to robot-degrees-spun.
         # TODO:   Assume that the conversion is linear with respect to speed.
-        
+
 
     def turn_degrees(self,
                      degrees,
