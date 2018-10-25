@@ -89,8 +89,6 @@ class DriveSystem(object):
         # For pedagogical purposes, we use a WHILE loop to keep  going for a
         # given number of seconds, instead of using the simpler alternative:
         #      time.sleep(seconds)
-        self.start_moving(left_wheel_duty_cycle_percent,
-                          right_wheel_duty_cycle_percent)
         start_time = time.time()
         while True:
             if time.time() - start_time > seconds:
@@ -107,12 +105,14 @@ class DriveSystem(object):
         # TODO: Do a few experiments to determine the constant that converts
         # TODO:   from wheel-degrees-spun to robot-inches-moved.
         # TODO:   Assume that the conversion is linear with respect to speed.
+        self.left_wheel.reset_degrees_spun()
+        self.right_wheel.reset_degrees_spun()
         self.start_moving(duty_cycle_percent,duty_cycle_percent)
-        start_time = time.time()
         while True:
-            if time.time() - start_time > 5:
-                self.stop_moving(stop_action)
+            degrees_turned = self.left_wheel.get_degrees_spun()
+            if degrees_turned > (inches * 120):
                 break
+        self.stop_moving(stop_action)
         
 
     def spin_in_place_degrees(self,
@@ -128,6 +128,8 @@ class DriveSystem(object):
         # TODO: Do a few experiments to determine the constant that converts
         # TODO:   from wheel-degrees-spun to robot-degrees-spun.
         # TODO:   Assume that the conversion is linear with respect to speed.
+        
+
     def turn_degrees(self,
                      degrees,
                      duty_cycle_percent=100,
