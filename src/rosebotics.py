@@ -176,7 +176,7 @@ class ArmAndClaw(object):
         Set the motor's position to 0 at that point.
         (Hence, 0 means all the way DOWN and XXX means all the way UP).
         """
-
+        # TODO
 
     def raise_arm_and_close_claw(self):
         """
@@ -233,7 +233,7 @@ class ColorSensor(rb.ColorSensor):
         be between 0 (no light reflected) and 100 (maximum light reflected).
         """
         while self.get_reflected_intensity() > reflected_light_intensity:
-            time.sleep(.1)
+            time.sleep(.01)
         return
 
 
@@ -244,7 +244,7 @@ class ColorSensor(rb.ColorSensor):
         should be between 0 (no light reflected) and 100 (max light reflected).
         """
         while self.get_reflected_intensity() < reflected_light_intensity:
-            time.sleep(.1)
+            time.sleep(.01)
         return
 
     def wait_until_color_is(self, color):
@@ -254,7 +254,7 @@ class ColorSensor(rb.ColorSensor):
         The given color must be a Color (as defined above).
         """
         while self.get_color() != color:
-            time.sleep(.1)
+            time.sleep(.01)
         return
 
     def wait_until_color_is_one_of(self, colors):
@@ -267,7 +267,7 @@ class ColorSensor(rb.ColorSensor):
             for k in range(len(colors)):
                 if colors[k] == self.get_color():
                     return
-            time.sleep(.1)
+            time.sleep(.01)
 
 
 class InfraredSensorAsProximitySensor(object):
