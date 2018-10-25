@@ -157,7 +157,7 @@ class ArmAndClaw(object):
         Set the motor's position to 0 at that point.
         (Hence, 0 means all the way DOWN and XXX means all the way UP).
         """
-        # TODO
+
 
     def raise_arm_and_close_claw(self):
         """
