@@ -19,9 +19,9 @@ def go_along_line(direction="left", seconds=30):
         robot.drive_system.start_moving(100, 100)
         robot.color_sensor.wait_until_intensity_is_greater_than(5)
         if direction.lower() == "left":
-            robot.drive_system.start_moving(-100, 100)
+            robot.drive_system.start_moving(-10, 100)
         else:
-            robot.drive_system.start_moving(100, -100)
+            robot.drive_system.start_moving(100, -10)
         robot.color_sensor.wait_until_intensity_is_less_than(5)
         if time.time() - start > seconds:
             robot.drive_system.stop_moving()
