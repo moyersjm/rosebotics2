@@ -12,7 +12,7 @@ def main():
     robot = rb.Snatch3rRobot()
     robot.drive_system.left_wheel.reset_degrees_spun()
     robot.drive_system.right_wheel.reset_degrees_spun()
-    robot.drive_system.go_straight_inches(3)
+    robot.drive_system.spin_in_place_degrees(90)
     leftDegrees = robot.drive_system.left_wheel.get_degrees_spun()
     rightDegrees = robot.drive_system.right_wheel.get_degrees_spun()
     print(leftDegrees, rightDegrees)
