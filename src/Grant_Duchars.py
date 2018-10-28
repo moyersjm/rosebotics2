@@ -14,7 +14,7 @@ def main():
 def polygon_drive(n):
     """Makes the robot drive in a polygon shape with n sides"""
     robot = rb.Snatch3rRobot()
-    angle = 180 - (360 / n)
+    angle = 360 / n
     for k in range(n):
       robot.drive_system.go_straight_inches(10)
       robot.drive_system.spin_in_place_degrees(angle)
