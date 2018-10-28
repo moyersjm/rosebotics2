@@ -9,12 +9,15 @@ import time
 
 def main():
     """ Runs YOUR specific part of the project """
+    polygon_drive(5)
+
+def polygon_drive(n):
+    """Makes the robot drive in a polygon shape with n sides"""
     robot = rb.Snatch3rRobot()
-    robot.drive_system.left_wheel.reset_degrees_spun()
-    robot.drive_system.right_wheel.reset_degrees_spun()
-    robot.drive_system.turn_degrees(90)
-    leftDegrees = robot.drive_system.left_wheel.get_degrees_spun()
-    rightDegrees = robot.drive_system.right_wheel.get_degrees_spun()
-    print(leftDegrees, rightDegrees)
+    angle = 180 - (360 / n)
+    for k in range(n):
+      robot.drive_system.go_straight_inches(10)
+      robot.drive_system.spin_in_place_degrees(angle)
+
 
 main()
