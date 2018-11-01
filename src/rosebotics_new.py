@@ -130,7 +130,7 @@ class Snatch3rRobot(object):
         """
         self.touch_sensor = TouchSensor(touch_sensor_port)
         self.color_sensor = ColorSensor(color_sensor_port)
-        self.camera = Camera(camera_port)
+        # self.camera = Camera(camera_port)
 
         self.proximity_sensor = InfraredAsProximitySensor(ir_sensor_port)
         # self.beacon_sensor = InfraredAsBeaconSensor(channel=1)
