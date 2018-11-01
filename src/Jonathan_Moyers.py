@@ -3,13 +3,14 @@
   Fall term, 2018-2019.
 """
 
-import rosebotics as rb
+import rosebotics_new as rb
 import time
+from ev3dev import ev3
 
 
 def main():
     """ Runs YOUR specific part of the project """
-    go_along_line('left', 15)
+    # go_along_line('left', 15)
 
 
 def go_along_line(direction="left", seconds=30):
@@ -26,6 +27,16 @@ def go_along_line(direction="left", seconds=30):
         if time.time() - start > seconds:
             robot.drive_system.stop_moving()
             break
+
+
+def camera_detect():
+    robot = rb.Snatch3rRobot()
+    cam = robot.camera
+
+    blob1 = cam.get_biggest_blob()
+    while True:
+        if blob1.get_area() > 1:
+            ev3.Sound.beep().wait()
 
 
 
