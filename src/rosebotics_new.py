@@ -270,7 +270,7 @@ class TouchSensor(low_level_rb.TouchSensor):
        their colleagues, the entire team, and Jonathan Moyers.
     """
 
-    def __init__(self, port=ev3.INPUT_1):
+    def __init__(self, port=ev3.INPUT_3):
         super().__init__(port)
 
     def is_pressed(self):
