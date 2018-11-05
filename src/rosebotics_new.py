@@ -473,9 +473,9 @@ class InfraredAsProximitySensor(low_level_rb.InfraredSensor):
     A class for the infrared sensor when it is in the mode in which it
     measures distance to the nearest object that it sees.
     Primary authors:  The ev3dev authors, David Mutchler, Dave Fisher,
-       their colleagues, the entire team, and PUT_YOUR_NAME_HERE.
+       their colleagues, the entire team, and Liam Enneking.
     """
-    # TODO: In the above line, put the name of the primary author of this class.
+    # DONE: In the above line, put the name of the primary author of this class.
 
     def __init__(self, ir_sensor_port):
         super().__init__(ir_sensor_port)
