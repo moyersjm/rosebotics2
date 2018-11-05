@@ -197,7 +197,7 @@ class DriveSystem(object):
                           right_wheel_duty_cycle_percent)
         start_time = time.time()
         while True:
-            if time.time() - start_time > seconds:
+            if time.time() - start_time >= seconds:
                 self.stop_moving(stop_action.value)
                 break
 
@@ -213,7 +213,7 @@ class DriveSystem(object):
         self.start_moving(duty_cycle_percent, duty_cycle_percent)
         while True:
             degrees_turned = self.left_wheel.get_degrees_spun()
-            if degrees_turned > (inches * 80):
+            if degrees_turned >= (inches * 80):
                 break
         self.stop_moving(stop_action.value)
 
@@ -233,7 +233,7 @@ class DriveSystem(object):
         self.right_wheel.start_spinning(duty_cycle_percent * -1)
         while True:
             degrees_turned = self.left_wheel.get_degrees_spun()
-            if degrees_turned > (degrees * 5):
+            if degrees_turned >= (degrees * 5):
                 break
         self.stop_moving(stop_action)
 
@@ -696,7 +696,11 @@ class ArmAndClaw(object):
         (Hence, 0 means all the way DOWN and 14.2 * 360 means all the way UP).
         """
         # DONE: Do this as STEP 2 of implementing this class.
-        self.raise_arm_and_close_claw()
+        self.motor.start_spinning(100)
+        while True:
+            if self.touch_sensor.get_value() == 1:
+                self.motor.stop_spinning()
+                break
         self.motor.reset_degrees_spun()
         self.motor.start_spinning(-100)
         while True:
@@ -730,6 +734,6 @@ class ArmAndClaw(object):
             if self.touch_sensor.get_value() == 1:
                 self.motor.stop_spinning()
                 break
-            elif self.motor.degrees_turned >= (position):
+            elif self.motor.degrees_turned >= position:
                 self.motor.stop_spinning()
                 break
