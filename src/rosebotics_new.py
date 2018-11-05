@@ -230,12 +230,16 @@ class DriveSystem(object):
         where positive is clockwise and negative is counter-clockwise),
         stopping by using the given StopAction.
         """
+        # Resets how far the wheels have gone
         self.left_wheel.reset_degrees_spun()
         self.right_wheel.reset_degrees_spun()
+        # Starts spinning the Left Wheel forward and the Right Wheel backwards
         self.left_wheel.start_spinning(duty_cycle_percent)
         self.right_wheel.start_spinning(duty_cycle_percent * -1)
         while True:
+            # Tracks how many degrees left wheel has turned
             degrees_turned = self.left_wheel.get_degrees_spun()
+            # If it has gone degrees specified it breaks and stops
             if degrees_turned >= (degrees * 5):
                 break
         self.stop_moving(stop_action.value)
@@ -250,17 +254,23 @@ class DriveSystem(object):
         where positive is clockwise and negative is counter-clockwise),
         stopping by using the given StopAction.
         """
+        # Resets how far the wheels have gone
         self.left_wheel.reset_degrees_spun()
         self.right_wheel.reset_degrees_spun()
+        # If degrees are POSITIVE then it will turn LEFT
         if degrees > 0:
             self.left_wheel.start_spinning(duty_cycle_percent)
+        # If degrees are NEGATIVE then it will turn RIGHT
         elif degrees < 0:
             self.right_wheel.start_spinning(duty_cycle_percent)
         while True:
+            # If degrees are POSITIVE then it checks how much LEFT wheel has turned
             if degrees > 0:
                 degrees_turned = self.left_wheel.get_degrees_spun()
+            # If degrees are NEGATIVE then it checks how much RIGHT wheel has turned
             elif degrees < 0:
                 degrees_turned = self.right_wheel.get_degrees_spun()
+            # If the current wheel has turned degrees specified it breaks and stops
             if degrees_turned > (degrees * 10):
                 break
         self.stop_moving(stop_action.value)
