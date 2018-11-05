@@ -1,5 +1,5 @@
 """
-  Capstone Project.  Code written by PUT_YOUR_NAME_HERE.
+  Capstone Project.  Code written by Liam Enneking.
   Fall term, 2018-2019.
 """
 
@@ -27,12 +27,11 @@ def stop_on_color(color, seconds=15):
             break
 
 
-def stop_robot_with_wave(seconds=15):
+def stop_robot_with_wave(seconds=5):
     start = time.time()
     robot = rb.Snatch3rRobot()
-    print('starting program')
+    sensor = robot.proximity_sensor()
     robot.drive_system.start_moving()
-    sensor = robot.proximity_sensor
 
     while True:
         if sensor.get_distance_to_nearest_object() == 5:
@@ -40,5 +39,6 @@ def stop_robot_with_wave(seconds=15):
         if time.time() - start > seconds:
             robot.drive_system.stop_moving()
             break
+
 
 main()
