@@ -730,6 +730,6 @@ class ArmAndClaw(object):
             if self.touch_sensor.get_value() == 1:
                 self.motor.stop_spinning()
                 break
-            elif degrees_turned >= (position * 80):
+            elif self.motor.degrees_turned >= (position):
                 self.motor.stop_spinning()
                 break
