@@ -23,10 +23,10 @@ def polygon_drive(n):
 def run_test_arm():
     robot = rb.Snatch3rRobot()
     robot.arm.calibrate()
-    # time.sleep(1)
-    # robot.arm.raise_arm_and_close_claw()
-    # time.sleep(1)
-    # robot.arm.move_arm_to_position(300)
+    time.sleep(1)
+    robot.arm.raise_arm_and_close_claw()
+    time.sleep(1)
+    robot.arm.move_arm_to_position(300)
 
 
 main()
