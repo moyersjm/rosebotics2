@@ -702,13 +702,13 @@ class ArmAndClaw(object):
                 self.motor.stop_spinning()
                 break
         time.sleep(1)
-        self.motor.reset_degrees_spun
+        self.motor.reset_degrees_spun()
         self.motor.start_spinning(-100)
         while True:
             if self.motor.get_degrees_spun() == (-14.2 * 360):
                 self.motor.stop_spinning()
                 break
-        self.motor.reset_degrees_spun
+        self.motor.reset_degrees_spun()
 
     def raise_arm_and_close_claw(self):
         """

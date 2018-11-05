@@ -11,6 +11,7 @@ from ev3dev import ev3
 def main():
     """ Runs YOUR specific part of the project """
     # go_along_line('left', 15)
+    camera_detect(15)
 
 
 def go_along_line(direction="left", seconds=30):
@@ -29,14 +30,19 @@ def go_along_line(direction="left", seconds=30):
             break
 
 
-def camera_detect():
+def camera_detect(seconds):
     robot = rb.Snatch3rRobot()
     cam = robot.camera
+    start = time.time()
+    ev3.Sound.beep()
 
-    blob1 = cam.get_biggest_blob()
     while True:
-        if blob1.get_area() > 1:
+        blob1 = cam.get_biggest_blob()
+        if blob1.get_area() > 0:
             ev3.Sound.beep().wait()
+            print(blob1.get_area())
+        if time.time() - start > seconds:
+            break
 
 
 
