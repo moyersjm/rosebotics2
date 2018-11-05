@@ -133,9 +133,8 @@ class Snatch3rRobot(object):
         self.camera = Camera(camera_port)
 
         self.proximity_sensor = InfraredAsProximitySensor(ir_sensor_port)
-        # self.beacon_sensor = InfraredAsBeaconSensor(channel=1)
-        # self.beacon_button_sensor = InfraredAsBeaconButtonSensor(ir_sensor,
-        #                                                          channel=1)
+        self.beacon_sensor = InfraredAsBeaconSensor(channel=1)
+        self.beacon_button_sensor = InfraredAsBeaconButtonSensor(channel=1)
 
         self.brick_button_sensor = BrickButtonSensor()
 
