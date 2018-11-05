@@ -53,15 +53,23 @@ def turn_to_beacon():
     frame1.grid()
 
     button = ttk.Button(frame1, text='Infrared Beacon')
-    button['command'] = (lambda: turn(robot))
+    button['command'] = (lambda: turnandgo(robot))
     button.grid()
 
     root.mainloop()
 
 
-def turn(robot):
+def turnandgo(robot):
+    robot.drive_system.left_wheel.start_spinning(100)
+    robot.drive_system.right_wheel.start_spinning(-100)
+    while robot.beacon_sensor.get_heading_to_beacon() > 1:
+        time.sleep(.001)
+    robot.drive_system.right_wheel.start_spinning(100)
+    while robot.beacon_sensor.get_distance_to_beacon() > 1:
+        time.sleep(.001)
+    robot.drive_system.right_wheel.stop_spinning()
+    robot.drive_system.left_wheel.stop_spinning()
     return
-
 
 
 main()
