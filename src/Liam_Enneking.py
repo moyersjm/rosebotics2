@@ -27,15 +27,17 @@ def stop_on_color(color, seconds=15):
             break
 
 
-def stop_robot_with_wave(seconds=5):
-    start = time.time()
+def stop_robot_with_wave(seconds=15):
     robot = rb.Snatch3rRobot()
-    sensor = robot.proximity_sensor()
+    start = time.time()
+    sensor = robot.proximity_sensor
     robot.drive_system.start_moving()
 
     while True:
-        if sensor.get_distance_to_nearest_object() == 5:
+        print(sensor.get_distance_to_nearest_object_in_inches())
+        if sensor.get_distance_to_nearest_object_in_inches() <= 5:
             robot.drive_system.stop_moving()
+            break
         if time.time() - start > seconds:
             robot.drive_system.stop_moving()
             break
