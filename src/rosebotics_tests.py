@@ -6,6 +6,7 @@
 
 import rosebotics_new as rb
 import time
+from ev3dev import ev3
 
 
 def main():
@@ -132,5 +133,33 @@ def run_test_color_sensor():
         time.sleep(0.5)
         count = count + 1
 
+
+def go_along_line(direction="left", seconds=30):
+    robot = rb.Snatch3rRobot()
+    start = time.time()
+    while True:
+        robot.drive_system.start_moving(100, 100)
+        robot.color_sensor.wait_until_intensity_is_greater_than(5)
+        if direction.lower() == "left":
+            robot.drive_system.start_moving(-10, 100)
+        else:
+            robot.drive_system.start_moving(100, -10)
+        robot.color_sensor.wait_until_intensity_is_less_than(5)
+        if time.time() - start > seconds:
+            robot.drive_system.stop_moving()
+            break
+
+
+def camera_detect(seconds):
+    robot = rb.Snatch3rRobot()
+    cam = robot.camera
+    start = time.time()
+
+    while True:
+        blob1 = cam.get_biggest_blob()
+        if blob1.get_area() > 0:
+            ev3.Sound.beep().wait()
+        if time.time() - start > seconds:
+            break
 
 main()
