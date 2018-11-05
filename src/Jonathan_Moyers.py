@@ -6,12 +6,14 @@
 import rosebotics_new as rb
 import time
 import ev3dev.ev3 as ev3
+import tkinter
+from tkinter import ttk
 
 
 def main():
     """ Runs YOUR specific part of the project """
     # go_along_line('left', 15)
-    camera_detect(15)
+    # camera_detect(15)
 
 
 def go_along_line(direction="left", seconds=30):
@@ -41,6 +43,24 @@ def camera_detect(seconds=15):
             ev3.Sound.beep().wait()
         if time.time() - start > seconds:
             break
+
+
+def turn_to_beacon():
+    robot = rb.Snatch3rRobot()
+    root = tkinter.Tk()
+
+    frame1 = ttk.Frame(root, padding=100)
+    frame1.grid()
+
+    button = ttk.Button(frame1, text='Infrared Beacon')
+    button['command'] = (lambda: turn(robot))
+    button.grid()
+
+    root.mainloop()
+
+
+def turn(robot):
+    return
 
 
 
