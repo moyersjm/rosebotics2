@@ -207,11 +207,15 @@ class DriveSystem(object):
         Go straight at the given speed (-100 to 100, negative is backwards)
         for the given number of inches, stopping with the given StopAction.
         """
+        # Resets how far the wheels have gone
         self.left_wheel.reset_degrees_spun()
         self.right_wheel.reset_degrees_spun()
+        # Starts moving the robot
         self.start_moving(duty_cycle_percent, duty_cycle_percent)
         while True:
+            # Tracks how far the robot has moved
             degrees_turned = self.left_wheel.get_degrees_spun()
+            # If the robot has moved far enough it breaks and stops
             if degrees_turned >= (inches * 80):
                 break
         self.stop_moving(stop_action.value)
