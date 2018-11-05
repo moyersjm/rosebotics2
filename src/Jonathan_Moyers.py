@@ -30,14 +30,14 @@ def go_along_line(direction="left", seconds=30):
             break
 
 
-def camera_detect(seconds):
+def camera_detect(seconds=15):
     robot = rb.Snatch3rRobot()
     cam = robot.camera
     start = time.time()
 
     while True:
         blob1 = cam.get_biggest_blob()
-        if blob1.get_area() > 0:
+        if blob1.get_area() > 1000:
             ev3.Sound.beep().wait()
         if time.time() - start > seconds:
             break
