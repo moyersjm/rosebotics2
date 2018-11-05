@@ -725,13 +725,20 @@ class ArmAndClaw(object):
         Move at a reasonable speed.
         """
         # DONE: Do this as STEP 3 of implementing this class.
+        touches = 0
         while True:
+            if self.touch_sensor.get_value() == 1:
+                self.motor.start_spinning(-100)
+                touches += 1
+                time.sleep(1)
+                if self.touch_sensor.get_value() == 1 and touches == 2:
+                    self.motor.stop_spinning()
             if self.motor.get_degrees_spun() >= (position + 10):
                 self.motor.start_spinning(-100)
             elif self.motor.get_degrees_spun() <= (position - 10):
                 self.motor.start_spinning(100)
             elif self.motor.get_degrees_spun() <= (position + 10) and self.motor.get_degrees_spun() >= (position - 10):
                 self.motor.stop_spinning()
-    
+
                 
             
