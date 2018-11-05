@@ -696,19 +696,14 @@ class ArmAndClaw(object):
         (Hence, 0 means all the way DOWN and 14.2 * 360 means all the way UP).
         """
         # DONE: Do this as STEP 2 of implementing this class.
-        self.motor.start_spinning(100)
-        while True:
-            if self.touch_sensor.get_value() == 1:
-                self.motor.stop_spinning()
-                break
-        time.sleep(1)
-        self.motor.reset_degrees_spun
+        self.raise_arm_and_close_claw()
+        self.motor.reset_degrees_spun()
         self.motor.start_spinning(-100)
         while True:
             if self.motor.get_degrees_spun() == (-14.2 * 360):
                 self.motor.stop_spinning()
                 break
-        self.motor.reset_degrees_spun
+        self.motor.reset_degrees_spun()
 
     def raise_arm_and_close_claw(self):
         """
@@ -717,7 +712,12 @@ class ArmAndClaw(object):
         Positive speeds make the arm go UP; negative speeds make it go DOWN.
         Stop when the touch sensor is pressed.
         """
-        # TODO: Do this as STEP 1 of implementing this class.
+        # DONE: Do this as STEP 1 of implementing this class.
+        self.motor.start_spinning(100)
+        while True:
+            if self.touch_sensor.get_value() == 1:
+                self.motor.stop_spinning()
+                break
 
     def move_arm_to_position(self, position):
         """
@@ -725,3 +725,11 @@ class ArmAndClaw(object):
         Move at a reasonable speed.
         """
         # TODO: Do this as STEP 3 of implementing this class.
+        self.motor.start_spinning(100)
+        while True:
+            if self.touch_sensor.get_value() == 1:
+                self.motor.stop_spinning()
+                break
+            elif degrees_turned >= (position * 80):
+                self.motor.stop_spinning()
+                break
