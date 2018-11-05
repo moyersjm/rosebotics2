@@ -235,7 +235,7 @@ class DriveSystem(object):
             degrees_turned = self.left_wheel.get_degrees_spun()
             if degrees_turned >= (degrees * 5):
                 break
-        self.stop_moving(stop_action)
+        self.stop_moving(stop_action.value)
 
     def turn_degrees(self,
                      degrees,

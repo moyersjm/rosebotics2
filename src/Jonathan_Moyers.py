@@ -34,13 +34,11 @@ def camera_detect(seconds):
     robot = rb.Snatch3rRobot()
     cam = robot.camera
     start = time.time()
-    ev3.Sound.beep()
 
     while True:
         blob1 = cam.get_biggest_blob()
         if blob1.get_area() > 0:
             ev3.Sound.beep().wait()
-            print(blob1.get_area())
         if time.time() - start > seconds:
             break
 
