@@ -743,12 +743,14 @@ class ArmAndClaw(object):
                 time.sleep(1)
                 if self.touch_sensor.get_value() == 1 and touches == 2:
                     self.motor.stop_spinning()
-            if self.motor.get_degrees_spun() >= (position + 10):
-                self.motor.start_spinning(-100)
-            elif self.motor.get_degrees_spun() <= (position - 10):
-                self.motor.start_spinning(100)
+                    break
             elif self.motor.get_degrees_spun() <= (position + 10) and self.motor.get_degrees_spun() >= (position - 10):
                 self.motor.stop_spinning()
+                break
+            elif self.motor.get_degrees_spun() > (position + 10):
+                self.motor.start_spinning(-100)
+            elif self.motor.get_degrees_spun() < (position - 10):
+                self.motor.start_spinning(100)
 
                 
             
