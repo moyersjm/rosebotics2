@@ -752,19 +752,16 @@ class ArmAndClaw(object):
                 touches += 1
                 time.sleep(1)
                 # If the arm hits the touch sensor twice it stops trying
-                if self.touch_sensor.get_value() == 1 and touches == 2:
+                if self.touch_sensor.get_value() == 1 and touches >= 1:
                     self.motor.stop_spinning()
                     break
             # If the arm is BELOW 10 above the position and ABOVE 10 below the position it stops
-            elif self.motor.get_degrees_spun() <= (position + 10) and self.motor.get_degrees_spun() >= (position - 10):
+            elif self.motor.get_degrees_spun() <= (position*10 + 10) and self.motor.get_degrees_spun() >= (position*10 - 10):
                 self.motor.stop_spinning()
                 break
             # If the arm is ABOVE the position the arm goes DOWN
-            elif self.motor.get_degrees_spun() > (position + 10):
+            elif self.motor.get_degrees_spun() > (position*10 + 10):
                 self.motor.start_spinning(-100)
             # If the arm if BELOW the position the arm goes UP
-            elif self.motor.get_degrees_spun() < (position - 10):
+            elif self.motor.get_degrees_spun() < (position*10 - 10):
                 self.motor.start_spinning(100)
-
-                
-            
