@@ -3,8 +3,8 @@
   Fall term, 2018-2019.
 """
 
-import rosebotics_new as rb
-import time
+import rosebotics_new as rb, time
+from ev3dev import ev3
 
 
 def main():
@@ -22,11 +22,14 @@ def polygon_drive(n):
 
 def run_test_arm():
     robot = rb.Snatch3rRobot()
-    robot.arm.calibrate()
+    ev3.Sound.beep().wait()
+    # robot.arm.calibrate()
     time.sleep(1)
     robot.arm.raise_arm_and_close_claw()
+    ev3.Sound.beep().wait()
     time.sleep(1)
     robot.arm.move_arm_to_position(300)
+    ev3.Sound.beep().wait()
 
 
 main()

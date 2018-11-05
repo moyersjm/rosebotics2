@@ -686,7 +686,7 @@ class ArmAndClaw(object):
         # Sets the motor's position to 0 (the DOWN position).
         # At the DOWN position, the robot fits in its plastic bin,
         # so we start with the ArmAndClaw in that position.
-        # self.calibrate()
+        self.calibrate()
 
     def calibrate(self):
         """
