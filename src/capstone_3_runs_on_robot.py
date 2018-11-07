@@ -10,29 +10,28 @@ It uses MQTT to RECEIVE information from a program running on the LAPTOP.
 Authors:  David Mutchler, his colleagues, and Jonathan Moyers.
 """
 
-# ------------------------------------------------------------------------------
-# TODO: 2. With your instructor, review the "big picture" of laptop-robot
-# TODO:    communication, per the comment in mqtt_sender.py.
-# TODO:    Once you understand the "big picture", delete this TODO.
-# ------------------------------------------------------------------------------
-
 import rosebotics_new as rb
 import time
 import mqtt_remote_method_calls as com
 import ev3dev.ev3 as ev3
 
 
-class MyDelegate(object):
+class Controller(object):
 
     def __init__(self, robot):
+        """
+        Stores a robot.
+          :type robot: rb.Snatch3rRobot
+        """
         self.robot = robot
 
-    def print(self):
-        print('Yo whatzup')
-
-    def forward(self, speed):
+    def forward(self, speedstr):
+        speed = int(speedstr)
         self.robot.drive_system.left_wheel.start_spinning(speed)
         self.robot.drive_system.right_wheel.start_spinning(speed)
+        time.sleep(5)
+        self.robot.drive_system.left_wheel.stop_spinning()
+        self.robot.drive_system.right_wheel.stop_spinning()
 
     def turnandgo(self):
         self.robot.drive_system.left_wheel.start_spinning(100)
@@ -50,9 +49,10 @@ class MyDelegate(object):
 
 def main():
     robot = rb.Snatch3rRobot()
+    ev3.Sound.beep().wait()
 
-    my_delegate = MyDelegate(robot)
-    mqtt_client = com.MqttClient(my_delegate)
+    delegate = Controller(robot)
+    mqtt_client = com.MqttClient(delegate)
     print('connecting to pc...', end='')
     mqtt_client.connect_to_pc()
     print('Done')
