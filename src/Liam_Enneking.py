@@ -5,6 +5,8 @@
 
 import rosebotics_new as rb
 import time
+import tkinter
+import tkinter as ttk
 
 
 def main():
@@ -42,5 +44,19 @@ def stop_robot_with_wave(seconds=15):
             robot.drive_system.stop_moving()
             break
 
+def move_on_button_press(seconds=15):
+    robot = rb.Snatch3rRobot()
+    root = tkinter.Tk()
+    frame1 = ttk.Frame(root, padding=10)
+    frame1.grid()
+    my_entry_box = ttk.Entry(frame1)
+    my_entry_box.grid()
+    button1 = ttk.Button
+    button1['command'] = (lambda: move_forward(my_entry_box.get()))
+
+
+def move_forward(entry):
+    robot = rb.Snatch3rRobot()
+    robot.drive_system.start_moving(entry)
 
 main()
