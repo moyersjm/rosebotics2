@@ -26,9 +26,9 @@ def main():
     while True:
         time.sleep(0.01)  # For the delegate to do its work
         if robot.beacon_button_sensor.is_top_red_button_pressed():
-            ev3.Sound.beep()
+            ev3.Sound.beep().wait()
         if robot.beacon_button_sensor.is_top_blue_button_pressed():
-            ev3.Sound.speak()
+            ev3.Sound.speak('Onward to poland my comrades').wait()
 
 
 class RemoteControlEct(object):
