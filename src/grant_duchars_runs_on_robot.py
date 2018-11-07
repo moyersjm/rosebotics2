@@ -19,10 +19,10 @@ import ev3dev.ev3 as ev3
 def main():
     robot = rb.Snatch3rRobot()
 
+    rc = RemoteControlEtc(robot)
+
     mqtt_client = com.MqttClient(rc)
     mqtt_client.connect_to_pc()
-
-    rc = RemoteControlEtc(robot)
     
     # --------------------------------------------------------------------------
     # TODO: 5. Add a class for your "delegate" object that will handle messages
