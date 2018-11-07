@@ -47,7 +47,7 @@ def handle_go_forward(client, entrybox):
     """
 
     speed = entrybox.get()
-    client.send_message('move_forward', [speed])
+    client.send_message('go_forward', [speed])
     print('Speed:' + speed)
     print('Robot moving forward')
 
