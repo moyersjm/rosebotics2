@@ -12,7 +12,7 @@ def main():
     robot = rb.Snatch3rRobot()
     robot.drive_system.spin_in_place_degrees(360)
     polygon_drive(robot, 5)
-    run_test_arm(robot)
+    # run_test_arm(robot)
 
 def polygon_drive(robot, n):
     """Makes the robot drive in a polygon shape with n sides"""
