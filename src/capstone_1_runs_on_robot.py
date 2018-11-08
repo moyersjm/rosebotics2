@@ -28,7 +28,7 @@ def main():
         if robot.beacon_button_sensor.is_top_red_button_pressed():
             ev3.Sound.beep().wait()
         if robot.beacon_button_sensor.is_top_blue_button_pressed():
-            ev3.Sound.speak('Onward to poland my comrades').wait()
+            ev3.Sound.speak('Onward my comrades').wait()
 
 
 class RemoteControlEct(object):
