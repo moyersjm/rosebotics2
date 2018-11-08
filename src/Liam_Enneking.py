@@ -29,7 +29,7 @@ def stop_on_color(color, seconds=15):
             break
 
 
-def stop_robot_with_wave(seconds=15):
+def beep_robot_with_wave(seconds=15):
     robot = rb.Snatch3rRobot()
     start = time.time()
     sensor = robot.proximity_sensor
