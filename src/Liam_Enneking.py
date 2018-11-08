@@ -5,14 +5,12 @@
 
 import rosebotics_new as rb
 import time
-import tkinter
-import tkinter as ttk
 
 
 def main():
     """ Runs YOUR specific part of the project """
     # stop_on_color(5)  # Red
-    stop_robot_with_wave()
+    robot_beep_with_wave()
 
 
 def stop_on_color(color, seconds=15):
@@ -29,7 +27,7 @@ def stop_on_color(color, seconds=15):
             break
 
 
-def beep_robot_with_wave(seconds=15):
+def robot_beep_with_wave(seconds=15):
     robot = rb.Snatch3rRobot()
     start = time.time()
     sensor = robot.proximity_sensor
