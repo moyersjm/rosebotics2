@@ -29,7 +29,7 @@ def setup_gui(root_window, mqtt):
     frame.grid()
 
     speed_entry_box = ttk.Entry(frame)
-    go_forward_button = ttk.Button(frame, text="Go to beacon")
+    go_forward_button = ttk.Button(frame, text="Forward")
 
     speed_entry_box.grid()
     go_forward_button.grid()
@@ -44,7 +44,7 @@ def handle_go_forward(entry, mqtt):
     """
     speed = entry.get()
     print('sending...', end='')
-    mqtt.send_message('turnandgo')
+    mqtt.send_message('forward', [speed])
     print('Done', end=' ')
     print(speed)
 
