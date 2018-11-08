@@ -20,6 +20,9 @@ def polygon_drive(n):
       robot.drive_system.go_straight_inches(10)
       robot.drive_system.spin_in_place_degrees(angle)
 
+# def test_buttons():
+#     robot = rb.Snatch3rRobot()
+
 def run_test_arm():
     robot = rb.Snatch3rRobot()
     time.sleep(1)
