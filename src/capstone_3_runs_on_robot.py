@@ -36,11 +36,12 @@ class Controller(object):
     def turnandgo(self):
         self.robot.drive_system.left_wheel.start_spinning(100)
         self.robot.drive_system.right_wheel.start_spinning(-100)
-        while self.robot.beacon_sensor.get_heading_to_beacon() > 1:
-            time.sleep(.001)
+        while self.robot.beacon_sensor.get_heading_to_beacon() != 1:
+            time.sleep(.01)
+            print(self.robot.beacon_sensor.get_heading_to_beacon())
         self.robot.drive_system.right_wheel.start_spinning(100)
         while self.robot.beacon_sensor.get_distance_to_beacon() > 1:
-            time.sleep(.001)
+            time.sleep(.01)
         self.robot.drive_system.right_wheel.stop_spinning()
         self.robot.drive_system.left_wheel.stop_spinning()
         return
@@ -58,10 +59,10 @@ def main():
     print('Done')
     while True:
         time.sleep(0.01)  # For the delegate to do its work
-        if robot.beacon_button_sensor.is_top_red_button_pressed():
+        """if robot.beacon_button_sensor.is_top_red_button_pressed():
             ev3.Sound.beep().wait()
         if robot.beacon_button_sensor.is_top_blue_button_pressed():
-            ev3.Sound.speak('You pressed the. Blue. Button on the. Top.').wait()
+            ev3.Sound.speak('You pressed the. Blue. Button on the. Top.').wait()"""
 
 
 main()
