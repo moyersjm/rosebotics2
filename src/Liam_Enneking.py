@@ -5,6 +5,7 @@
 
 import rosebotics_new as rb
 import time
+import ev3dev.ev3 as ev3
 
 
 def main():
@@ -34,8 +35,8 @@ def robot_beep_with_wave(seconds=15):
 
     while True:
         print(sensor.get_distance_to_nearest_object_in_inches())
-        if sensor.get_distance_to_nearest_object_in_inches() <= 7:
-            robot.Sound.beep
+        if sensor.get_distance_to_nearest_object_in_inches() <= 50:
+            ev3.Sound.beep().wait()
             break
         if time.time() - start > seconds:
             robot.drive_system.stop_moving()
