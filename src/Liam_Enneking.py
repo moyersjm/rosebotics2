@@ -35,7 +35,7 @@ def robot_beep_with_wave(seconds=15):
 
     while True:
         print(sensor.get_distance_to_nearest_object_in_inches())
-        if sensor.get_distance_to_nearest_object_in_inches() <= 50:
+        if sensor.get_distance_to_nearest_object_in_inches() <= 70:
             ev3.Sound.beep().wait()
             break
         if time.time() - start > seconds:
