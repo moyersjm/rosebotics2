@@ -133,8 +133,8 @@ class Snatch3rRobot(object):
         self.camera = Camera(camera_port)
 
         self.proximity_sensor = InfraredAsProximitySensor(ir_sensor_port)
-        self.beacon_sensor = InfraredAsBeaconSensor(channel=1)
-        self.beacon_button_sensor = InfraredAsBeaconButtonSensor(channel=1)
+        # self.beacon_sensor = InfraredAsBeaconSensor(channel=1)
+        # self.beacon_button_sensor = InfraredAsBeaconButtonSensor(channel=1)
 
         self.brick_button_sensor = BrickButtonSensor()
 
@@ -538,8 +538,8 @@ class InfraredAsProximitySensor(low_level_rb.InfraredSensor):
         in inches, where about 39.37 inches (which is 100 cm) means no object
         is within its field of vision.
         """
-        inches_per_cm = 1/2.54
-        return (70 / inches_per_cm) * (self.get_distance_to_nearest_object() / 100)
+        inches_per_cm = 1.0/2.54
+        return (70 / inches_per_cm) * (float(self.get_distance_to_nearest_object()) / 100)
 
 
 class InfraredAsBeaconSensor(object):

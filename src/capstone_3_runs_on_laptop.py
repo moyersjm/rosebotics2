@@ -28,25 +28,25 @@ def setup_gui(root_window, mqtt):
     frame = ttk.Frame(root_window, padding=100)
     frame.grid()
 
-    speed_entry_box = ttk.Entry(frame)
-    go_forward_button = ttk.Button(frame, text="Forward")
+    button1 = ttk.Button(frame, text="Follow the line")
+    button2 = ttk.Button(frame, text="Abort")
 
-    speed_entry_box.grid()
-    go_forward_button.grid()
+    button1.grid()
+    button2.grid()
 
-    go_forward_button['command'] = \
-        lambda: handle_go_forward(speed_entry_box, mqtt)
+    button1['command'] = \
+        lambda: handle_go(mqtt, 'followcurved')
+    button2['command'] = \
+        lambda: handle_go(mqtt, 'stopall')
 
 
-def handle_go_forward(entry, mqtt):
+def handle_go(mqtt, message):
     """
     Tells the robot to go forward at the speed specified in the given entry box.
     """
-    speed = entry.get()
     print('sending...', end='')
-    mqtt.send_message('forward', [speed])
-    print('Done', end=' ')
-    print(speed)
+    mqtt.send_message(message)
+    print('Done')
 
 
 
