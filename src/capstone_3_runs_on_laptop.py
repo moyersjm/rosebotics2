@@ -13,31 +13,45 @@ from tkinter import ttk
 import mqtt_remote_method_calls as com
 
 
+class Delegate:
+    def __init__(self):
+        self.return_value = 0
+
+    @staticmethod
+    def disp(message):
+        update(root_win, message)
+
+
+root_win = tkinter.Tk()
+delegate = Delegate
+mqtt_client = com.MqttClient(delegate)
+
 def main():
     """ Constructs and runs a GUI for this program. """
-    root = tkinter.Tk()
-    mqtt_client = com.MqttClient()
     mqtt_client.connect_to_ev3()
-    setup_gui(root, mqtt_client)
+    setup_gui(mqtt_client)
 
-    root.mainloop()
+    root_win.mainloop()
 
 
-def setup_gui(root_window, mqtt):
+def setup_gui(mqtt):
     """ Constructs and sets up widgets on the given window. """
-    frame = ttk.Frame(root_window, padding=100)
+    frame = ttk.Frame(root_win, padding=100)
     frame.grid()
 
     button1 = ttk.Button(frame, text="Follow the line")
-    button2 = ttk.Button(frame, text="Abort")
 
     button1.grid()
-    button2.grid()
 
     button1['command'] = \
         lambda: handle_go(mqtt, 'followcurved')
-    button2['command'] = \
-        lambda: handle_go(mqtt, 'stopall')
+
+
+def update(root_win, message):
+    frame = ttk.Frame(root_win, padding=10)
+    frame.grid()
+    label = ttk.Label(frame, text=message)
+    label.grid()
 
 
 def handle_go(mqtt, message):
