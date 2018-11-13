@@ -1,13 +1,13 @@
 """
-Mini-application:  Buttons on a Tkinter GUI tell the robot to:
-  - Go forward at the speed given in an entry box.
-
-Also: responds to Beacon button-presses by beeping, speaking.
+Mini-application:  Button on Tkinter GUI tells robot to move along a curvy line.
+The robot replies whenever it comes across an object and then avoids said object.
 
 This module runs on the ROBOT.
-It uses MQTT to RECEIVE information from a program running on the LAPTOP.
+It uses MQTT to RECEIVE and SEND information to and from a program running on the LAPTOP.
 
 Authors:  David Mutchler, his colleagues, and Jonathan Moyers.
+
+Video Link: https://youtu.be/JQyRFaaDZp0
 """
 
 import rosebotics_new as rb
