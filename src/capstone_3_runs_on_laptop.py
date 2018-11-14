@@ -13,40 +13,54 @@ from tkinter import ttk
 import mqtt_remote_method_calls as com
 
 
+class Delegate:
+    def __init__(self):
+        self.return_value = 0
+
+    @staticmethod
+    def disp(message):
+        update(root_win, message)
+
+
+root_win = tkinter.Tk()
+delegate = Delegate
+mqtt_client = com.MqttClient(delegate)
+
 def main():
     """ Constructs and runs a GUI for this program. """
-    root = tkinter.Tk()
-    mqtt_client = com.MqttClient()
     mqtt_client.connect_to_ev3()
-    setup_gui(root, mqtt_client)
+    setup_gui(mqtt_client)
 
-    root.mainloop()
+    root_win.mainloop()
 
 
-def setup_gui(root_window, mqtt):
+def setup_gui(mqtt):
     """ Constructs and sets up widgets on the given window. """
-    frame = ttk.Frame(root_window, padding=100)
+    frame = ttk.Frame(root_win, padding=100)
     frame.grid()
 
-    speed_entry_box = ttk.Entry(frame)
-    go_forward_button = ttk.Button(frame, text="Forward")
+    button1 = ttk.Button(frame, text="Follow the line")
 
-    speed_entry_box.grid()
-    go_forward_button.grid()
+    button1.grid()
 
-    go_forward_button['command'] = \
-        lambda: handle_go_forward(speed_entry_box, mqtt)
+    button1['command'] = \
+        lambda: handle_go(mqtt, 'followcurved')
 
 
-def handle_go_forward(entry, mqtt):
+def update(root_win, message):
+    frame = ttk.Frame(root_win, padding=10)
+    frame.grid()
+    label = ttk.Label(frame, text=message)
+    label.grid()
+
+
+def handle_go(mqtt, message):
     """
     Tells the robot to go forward at the speed specified in the given entry box.
     """
-    speed = entry.get()
     print('sending...', end='')
-    mqtt.send_message('forward', [speed])
-    print('Done', end=' ')
-    print(speed)
+    mqtt.send_message(message)
+    print('Done')
 
 
 
