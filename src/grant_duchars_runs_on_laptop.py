@@ -8,6 +8,8 @@ It uses MQTT to SEND information to a program running on the ROBOT.
 Authors:  David Mutchler, his colleagues, and Grant Duchars.
 """
 
+# Video URL: https://youtu.be/y4b5jkECDXg
+
 import tkinter
 from tkinter import ttk
 import mqtt_remote_method_calls as com

@@ -10,6 +10,8 @@ It uses MQTT to RECEIVE information from a program running on the LAPTOP.
 Authors:  David Mutchler, his colleagues, and Grant Duchars.
 """
 
+# Video URL: https://youtu.be/y4b5jkECDXg
+
 import rosebotics_new as rb
 import time
 import mqtt_remote_method_calls as com
@@ -30,16 +32,22 @@ def main():
         # Tests for color and plays a tone with specific frequency based on color
         if robot.color_sensor.get_color() == 5 and rc.song_active == 1:
             ev3.Sound.tone(rc.notes_list[0],500)
+            time.sleep(0.4)
         elif robot.color_sensor.get_color() == 3 and rc.song_active == 1:
             ev3.Sound.tone(rc.notes_list[1],500)
+            time.sleep(0.4)
         elif robot.color_sensor.get_color() == 2 and rc.song_active == 1:
             ev3.Sound.tone(rc.notes_list[2],500)
+            time.sleep(0.4)
         elif robot.color_sensor.get_color() == 4 and rc.song_active == 1:
             ev3.Sound.tone(rc.notes_list[3],500)
+            time.sleep(0.4)
         elif robot.color_sensor.get_color() == 7 and rc.song_active == 1:
             ev3.Sound.tone(rc.notes_list[4],500)
+            time.sleep(0.4)
         elif robot.color_sensor.get_color() == 1 and rc.song_active == 1:
             ev3.Sound.tone(rc.notes_list[5],500)
+            time.sleep(0.4)
 
         # Tests for an object in front of the robot and stops if within 2 inches
         if robot.proximity_sensor.get_distance_to_nearest_object_in_inches() <= 2:
@@ -53,15 +61,17 @@ class RemoteControlEtc(object):
         Stores a robot.
           :type robot: rb.Snatch3rRobot
         """
+        self.robot = robot
+        self.song_active = 0
 
     def set_notes(self, note1Str, note2Str, note3Str, note4Str, note5Str, note6Str):
         """Sets values for six notes and stores them into a list to be called upon later"""
-        note1 = int(note1Str)
-        note2 = int(note2Str)
-        note3 = int(note3Str)
-        note4 = int(note4Str)
-        note5 = int(note5Str)
-        note6 = int(note6Str)
+        note1 = float(note1Str)
+        note2 = float(note2Str)
+        note3 = float(note3Str)
+        note4 = float(note4Str)
+        note5 = float(note5Str)
+        note6 = float(note6Str)
         self.notes_list = [note1,note2,note3,note4,note5,note6]
 
     def go_forward(self, speed_string):
